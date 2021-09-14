@@ -1,0 +1,237 @@
+{
+	"variables": [],
+	"info": {
+		"name": "AnaliseApp",
+		"_postman_id": "d94891f4-f08b-c250-7ef5-a1d929728ea7",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/usuario/permissao?id=2&permissao=1",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/usuario/permissao?id=2&permissao=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuario",
+						"permissao"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "permissao",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/portador?usuarioId=2",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/portador?usuarioId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"portador"
+					],
+					"query": [
+						{
+							"key": "usuarioId",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Teste Testador\",\n    \"cpf\": \"60105057045\",\n    \"proposta\": {\n        \"credito\": 4454512,\n        \"status\": \"PENDENTE\"\n    }\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/portador?id=11",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/portador?id=11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"portador"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "11",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/proposta/listar-propostas?usuarioId=1&minCredito=1000&maxCredito=500000",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/proposta/listar-propostas?usuarioId=1&minCredito=1000&maxCredito=500000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"proposta",
+						"listar-propostas"
+					],
+					"query": [
+						{
+							"key": "usuarioId",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "minCredito",
+							"value": "1000",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "maxCredito",
+							"value": "500000",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/proposta?id=1",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/proposta?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"proposta"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/proposta/atualiza-proposta?usuarioId=1",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/proposta/atualiza-proposta?usuarioId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"proposta",
+						"atualiza-proposta"
+					],
+					"query": [
+						{
+							"key": "usuarioId",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "propostaId",
+							"value": "1",
+							"equals": true,
+							"description": "",
+							"disabled": true
+						}
+					],
+					"variable": []
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"credito\": 444444,\n    \"status\": \"APROVADO\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

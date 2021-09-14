@@ -1,0 +1,13 @@
+package br.com.dock.analiseapp.discovery;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class AnaliseAppDiscoveryServiceApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(AnaliseAppDiscoveryServiceApplication.class, args);
+	}
+
+}

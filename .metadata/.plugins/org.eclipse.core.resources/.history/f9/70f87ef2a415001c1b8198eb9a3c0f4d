@@ -1,0 +1,39 @@
+server.port=8080
+spring.application.name=api-gateway
+eureka.client.service-url.defaultZone = http://localhost:9999/eureka
+
+spring.cloud.gateway.routes[0].id=usuarios-permissao
+spring.cloud.gateway.routes[0].uri = lb://usuarios-ws
+spring.cloud.gateway.routes[0].predicates[0]=Path=/usuario/permissao
+spring.cloud.gateway.routes[0].predicates[1]=Method=GET
+spring.cloud.gateway.routes[0].filters[0]=RemoveRequestHeader=Cookie
+
+spring.cloud.gateway.routes[1].id=portadores
+spring.cloud.gateway.routes[1].uri = lb://portadores-ws
+spring.cloud.gateway.routes[1].predicates[0]=Path=/portador
+spring.cloud.gateway.routes[1].predicates[1]=Method=POST
+spring.cloud.gateway.routes[1].filters[0]=RemoveRequestHeader=Cookie
+
+spring.cloud.gateway.routes[2].id=portadores
+spring.cloud.gateway.routes[2].uri = lb://portadores-ws
+spring.cloud.gateway.routes[2].predicates[0]=Path=/portador
+spring.cloud.gateway.routes[2].predicates[1]=Method=GET
+spring.cloud.gateway.routes[2].filters[0]=RemoveRequestHeader=Cookie
+
+spring.cloud.gateway.routes[3].id=portadores
+spring.cloud.gateway.routes[3].uri = lb://portadores-ws
+spring.cloud.gateway.routes[3].predicates[0]=Path=/proposta
+spring.cloud.gateway.routes[3].predicates[1]=Method=GET
+spring.cloud.gateway.routes[3].filters[0]=RemoveRequestHeader=Cookie
+
+spring.cloud.gateway.routes[4].id=portadores
+spring.cloud.gateway.routes[4].uri = lb://portadores-ws
+spring.cloud.gateway.routes[4].predicates[0]=Path=/proposta
+spring.cloud.gateway.routes[4].predicates[1]=Method=PUT
+spring.cloud.gateway.routes[4].filters[0]=RemoveRequestHeader=Cookie
+
+spring.cloud.gateway.routes[5].id=portadores
+spring.cloud.gateway.routes[5].uri = lb://portadores-ws
+spring.cloud.gateway.routes[5].predicates[0]=Path=/proposta/listar-propostas
+spring.cloud.gateway.routes[5].predicates[1]=Method=GET
+spring.cloud.gateway.routes[5].filters[0]=RemoveRequestHeader=Cookie

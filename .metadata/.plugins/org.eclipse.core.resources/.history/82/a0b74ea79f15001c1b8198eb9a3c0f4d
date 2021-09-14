@@ -1,0 +1,9 @@
+server.port=8080
+spring.application.name=api-gateway
+eureka.client.service-url.defaultZone = http://localhost:9999/eureka
+
+spring.cloud.gateway.routes[0].id=usuarios-permissao
+spring.cloud.gateway.routes[0].uri = lb://usuarios-ws
+spring.cloud.gateway.routes[0].predicates[0]=Path=/usuario/permissao
+spring.cloud.gateway.routes[0].predicates[1]=Method=GET
+spring.cloud.gateway.routes[0].filters[0]=RemoveRequestHeader=Cookie

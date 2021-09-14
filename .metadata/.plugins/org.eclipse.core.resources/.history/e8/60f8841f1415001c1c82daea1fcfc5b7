@@ -1,0 +1,56 @@
+package br.com.dock.analiseapp.api.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import br.com.dock.analiseapp.api.models.Portador;
+import br.com.dock.analiseapp.api.repositories.PropostaRepository;
+
+@Service
+public class PropostaService {
+
+	@Autowired
+	PropostaRepository propostaRepository;
+
+	@Autowired
+	PortadorService portadorService;
+	
+	@Autowired
+	UsuarioService usuarioService;
+	
+	private float minCred = 1000;
+	private float maxCred = 1000000;
+
+	public List<Portador> listarPortadores(Float minCredito, Float maxCredito, long idUsuario) throws Exception {
+
+		if (minCredito != null) {
+			minCred = minCredito;
+		}
+
+		if (maxCredito != null) {
+			maxCred = maxCredito;
+		}
+
+		List<Portador> portadores = null;
+
+		if (usuarioService.tipoPermissao(idUsuario, 1)) {
+			portadores = portadorService.resultadoAnalise(minCred, maxCred);
+		} else if (usuarioService.tipoPermissao(usuario_id, Permissao.ANALISTA)) {
+			portadores = portadorService.statusPendente(minCred, maxCred);
+		} else {
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
+					"Usuario não autorizado"); 
+		}
+		
+		if (portadores.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+					"Nenhuma proposta encontrada");
+		} else {
+			return portadores;
+		}
+	}	
+
+}

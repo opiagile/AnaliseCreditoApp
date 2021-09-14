@@ -1,0 +1,21 @@
+package br.com.dock.analiseapp.api.repositories;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import br.com.dock.analiseapp.api.models.Portador;
+
+@Repository
+public interface PortadorRepository {
+
+	@Query(value = "SELECT * FROM Portador p INNER JOIN proposta p2 ON p.proposta_id = p2.id WHERE p2.status != 0 AND p2.credito BETWEEN ?1 AND ?2", nativeQuery = true)
+	List<Portador> findByAnliseCredito(float minCred, float maxCred);
+
+	@Query(value = "SELECT * FROM portador p INNER JOIN proposta p2 ON p.proposta_id = p2.id WHERE p2.status = 0 AND p2.credito BETWEEN ?1 AND ?2", nativeQuery = true)
+	List<Portador> findByPendente(float minCred, float maxCred);
+
+	Portador findByCpf(String cpf);
+
+}

@@ -1,0 +1,17 @@
+package br.com.dock.analiseapp.api.enums;
+
+public enum Permissao {
+
+	ANALISTA("analista"),
+	CAPTADOR("captador");
+
+	private String permissao;
+	
+	Permissao(String permissao) {
+		this.permissao = permissao;
+	}
+	
+	public String getPermissao() {
+		return permissao;
+	}	
+}

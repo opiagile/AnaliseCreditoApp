@@ -1,0 +1,47 @@
+package br.com.dock.analiseapp.api.controllers;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+
+import br.com.dock.analiseapp.api.enums.Status;
+import br.com.dock.analiseapp.api.models.Portador;
+import br.com.dock.analiseapp.api.models.Proposta;
+import br.com.dock.analiseapp.api.services.PropostaService;
+
+@RestController
+@RequestMapping(value = "/proposta")
+public class PropostaController {
+
+	@Autowired
+	PropostaService propostaService;
+
+	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public List<Portador> listarPropostas(@RequestParam(required = false) long usuarioId,
+			@RequestParam(required = false) Float minCredito, @RequestParam(required = false) Float maxCredito)
+			throws Exception {
+
+		return propostaService.listarPortadores(minCredito, maxCredito, usuarioId);
+	}
+
+	@RequestMapping(method = RequestMethod.PUT, value = "/{propostaId}", produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
+	public Proposta atualizarProposta(@Valid @PathVariable(required = true) long propostaId,
+			@RequestParam(required = true) long usuarioId, @RequestBody(required = true) Status status)
+			throws Exception {
+
+		return propostaService.atualizaStatus(propostaId, status, usuarioId);
+	}
+
+}

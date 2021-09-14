@@ -1,0 +1,18 @@
+package br.com.dock.analiseapp.api.enums;
+
+public enum Status {
+
+	PENDENTE("pendente"),
+	APROVADO("aprovado"),
+	NEGADO("negado");
+
+	private String status_proposta;
+
+	Status(String status_proposta) {
+		this.status_proposta = status_proposta;
+	}
+
+	public String getStatusProposta() {
+		return status_proposta;
+	}
+}

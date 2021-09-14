@@ -1,0 +1,3 @@
+nome,login,senha,permissao
+Usuario Analista,analista,analista123,0
+Usuario Captador,captador,captador123,1

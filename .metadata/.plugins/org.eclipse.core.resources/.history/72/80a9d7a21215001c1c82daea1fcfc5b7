@@ -1,0 +1,51 @@
+package br.com.dock.analiseapp.api.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.client.RestTemplate;
+
+import br.com.dock.analiseapp.api.models.Portador;
+import br.com.dock.analiseapp.api.repositories.PortadorRepository;
+
+public class PortadorService {
+
+	@Autowired
+	PortadorRepository portadorRepository;
+	
+	@Autowired
+	RestTemplate restTemplate;
+	
+	private String BASE_URI = "http://localhost:8080/usuario";
+
+	public List<Portador> AnliseCredito(float minCred, float maxCred) {
+		return portadorRepository.findByAnliseCredito(minCred, maxCred);
+	}
+	
+	public List<Portador> getPendentes(float minCred, float maxCred) {
+		return portadorRepository.findByPendentes(minCred, maxCred);
+	}
+	
+	public Portador cadastrarPortador (Portador portador, long usuario_id) {
+		
+		
+		
+		if (usuarioService.tipoPermissao(usuario_id, Permissao.CAPTADOR)) {
+			if (portadorRepository.findByCpf(portador.getCpf()) != null) {
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+						"Não foi possível realizar o cadastro. Portador com esse CPF já existe");
+			} else {
+				portador.getProposta().setStatus(Status.PENDENTE);
+				return portadorRepository.save(portador);
+			}
+		} else {
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
+					"Usuario não autorizado"); 
+		}
+	}
+	
+	private Boolean tipoPermissao(final Long id, final int permissao) {
+		String uri = BASE_URI + "/permissao?id="+id+"&permissao="+permissao;		
+		return restTemplate.getForObject(uri, Boolean.class);
+	}
+}
